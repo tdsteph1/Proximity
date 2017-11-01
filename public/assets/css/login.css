@@ -1,0 +1,134 @@
+body
+{
+	background:	#dfe3ee;
+}
+/* this controls the blue header with username & password */
+.navbar
+{
+	height: 80px;
+	background: #3b5998;
+	color: white;
+
+	
+    
+	
+}
+
+/*Proximity Title in blue nav */
+#navTitle
+{
+	position: relative;
+	left: 100px;
+	font-weight: bold;
+	font-family: "Arial", Times, serif;
+	font-size: 30px;
+	
+
+    
+}
+
+/*userName */
+#nameText 
+{
+	margin-right: 5px;
+	
+	
+}
+
+/*password*/
+#passText
+{
+	margin-right: 5px;
+}
+
+/* form contains username, password textfiels & button */
+#headerForm
+{
+
+	  margin-right: 10%;
+
+}
+
+/* login button */
+#login-btn
+{
+	background-color: #3b5998;
+}
+
+/* increas navbar size in order to fit entir textfields inside blue bar */
+@media screen and (max-width: 946px)
+{
+	
+	.navbar
+	{
+
+		height: 250px;
+	 
+	}
+
+	
+}
+
+/* everything below the blue nave header */
+
+.container
+{
+	font-family: "Arial", Times, serif;	
+}
+
+
+/* this applies 10 margin top right bottom left. */
+.ten-margin
+{
+	margin: 60px 60px 60px 60px;
+}
+
+#firstName, #lastName
+{
+	width: 225px;
+}
+
+#firstName
+{
+	margin-right: 3px;
+}
+
+#lastName
+{
+	margin-left: 3px;
+
+}
+
+#email, #password
+{
+	width: 456px;
+}
+
+#radioFemale
+{
+	margin-left: 20px;
+}
+
+table
+{
+	
+
+    margin-top: 30px;
+}
+
+.row1
+{
+	
+}
+
+form
+{
+	
+}
+
+.inputArea
+{
+	
+
+    margin-top: 30px;
+}
