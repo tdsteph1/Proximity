@@ -22,15 +22,7 @@ var orm =
 		console.log(ciphertext.toString());
 		console.log(plaintext);
 	    */
-	    var encryptMsg = encryptor.encryptPassword('my message');
-	    console.log(encryptMsg);
-
-	    var decryptMsg = decryptor.decryptPassword(encryptMsg);
-	    console.log(decryptMsg)
-
-
-
-
+	   
 
 		var queryString = "SELECT * FROM " + tableInput + ";";
 
@@ -66,7 +58,20 @@ var orm =
 	//SQL table(proximity), cols or properites(column names), vals(column values), cb(function(result) on controller page)
 	insertOne: function(table, cols, vals, cb)
 	{
+
+		 //var encryptMsg = encryptor.encryptPassword('my message');
+	    //console.log(encryptMsg);
+
+	    //var decryptMsg = decryptor.decryptPassword(encryptMsg);
+	    //console.log(decryptMsg)
+
 		
+		//Obtain the value of password stored at vals[3] and encrypt password.
+		//then store encrypted password back to vals[3].
+		var encryptMsg = encryptor.encryptPassword(vals[3]);
+
+		vals[3] = encryptMsg;
+
 
 		var queryString = "INSERT INTO " + table + " (" + cols.toString() + ") VALUES (?, ?, ?, ?, ?)";
 

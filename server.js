@@ -17,13 +17,6 @@ var app = express();
 //server static content for app from the "public" directory in the application directory
 app.use(express.static("public"));
 
-//Routes
-//This allows html_routes.js to import app(app = exress())
-//require("./routes/html_routes.js")(app);
-//require("./controllers/proximity_controller.js")(app);
-
-
-
 
 //bodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
