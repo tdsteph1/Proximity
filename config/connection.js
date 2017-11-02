@@ -14,7 +14,7 @@ else
 		host: "localhost",
 		user: "root",
 		password: "",
-		database: "burgers_db"
+		database: "proximity_db"
 
 
 	});
@@ -32,6 +32,7 @@ connection.connect(function(err)
 	console.log("connected as id: " + connection.threadId);
 
 });
+
 
 //Export connectoin for our ORM to use
 module.exports = connection;

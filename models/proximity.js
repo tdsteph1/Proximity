@@ -8,8 +8,23 @@ var proximity =
 {
 
 
+	insertOne: function(cols, vals, cb)
+	{
+		//invoke insertOne() function inside (orm.js)
+		orm.insertOne("proximity", cols, vals, function(res)
+		{
+			cb(res);
+		});
+	},
 
 
+	selectAll: function(cb)
+	{
+		orm.selectAll("proximity", function(res)
+		{
+			cb(res);
+		});
+	}
 
 
 

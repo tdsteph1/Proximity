@@ -6,6 +6,8 @@ var exphbs = require("express-handlebars");
 //import routes & give the server access to them
 var routes = require("./controllers/proximity_controller.js");
 
+var router = express.Router();
+
 //set up server
 var PORT = process.env.PORT || 3000;
 var app = express();
@@ -14,12 +16,18 @@ var app = express();
 app.use(express.static("public"));
 
 //Routes
+//This allows html_routes.js to import app(app = exress())
 require("./routes/html_routes.js")(app);
 //require("./controllers/proximity_controller.js")(app);
+
+
+
 
 //bodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //set up handlebars
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
@@ -27,5 +35,6 @@ app.set("view engine", "handlebars");
 
 //After routes has been imported give the server access to them
 app.use("/", routes);
+
 
 app.listen(PORT);

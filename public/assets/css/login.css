@@ -17,11 +17,12 @@ body
 /*Proximity Title in blue nav */
 #navTitle
 {
-	position: relative;
-	left: 100px;
+	margin-left: 100px;
 	font-weight: bold;
 	font-family: "Arial", Times, serif;
 	font-size: 30px;
+
+
 	
 
     
@@ -55,13 +56,16 @@ body
 	background-color: #3b5998;
 }
 
+
+
+
 /* increas navbar size in order to fit entir textfields inside blue bar */
-@media screen and (max-width: 946px)
+@media screen and (max-width: 996px)
 {
 	
 	.navbar
 	{
-
+		
 		height: 250px;
 	 
 	}
@@ -91,22 +95,33 @@ body
 #firstName
 {
 	margin-right: 3px;
+	
 }
 
 #lastName
 {
 	margin-left: 3px;
+	
 
 }
 
 #email, #password
 {
 	width: 456px;
+	
 }
 
 #radioFemale
 {
 	margin-left: 20px;
+	
+	
+}
+
+#sign-btn
+{
+	background-color: #3b5998;
+	margin-left: 10px;
 }
 
 table
