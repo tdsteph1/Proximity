@@ -1,4 +1,5 @@
 var express = require("express");
+var path = require("path");
 
 //(router) will get imported by (server.js)
 var router = express.Router();
@@ -9,7 +10,7 @@ var proximity = require("../models/proximity.js");
 //GET
 router.get("/", function(req, res)
 {
-	
+
 	proximity.selectAll(function(data)
 	{
 		var proximityObject =
@@ -17,23 +18,34 @@ router.get("/", function(req, res)
 			proximity: data
 		}
 
+		//Displays inside console the mySQL array of TABLE objects
+		//stored inside our proximity table.
 		console.log(proximityObject);
 
-		//res.render("login.html", proximityObject);
-
+/*
+		res.render("index", 
+		{
+			plans: proximityObject
+		});
+*/
 		
 	});
 
+	//This allows us to open up home page(login.html)
+	//NOTE: DO NOT USE Routes/html_routes.js && api_routes since
+	//      having those prevents GET from working properley.
+	//      instead have controller deal with those 2 things.
+	res.sendFile(path.join(__dirname, "../public/login.html"));
 });
-
-
 
 //POST
 //runs concurrently with $.ajax/POST
 router.post("/api/proximity", function(req, res)
 {
 	//here we are invoking insertOne() function inside (models/proximity.js)
-	proximity.insertOne(["firstName", "lastName", "email", "password", "gender"], [req.body.firstName, req.body.lastName, req.body.email, req.body.password, req.body.gender], function(result)
+	proximity.insertOne(["firstName", "lastName", "email", "password", "gender"], 
+		                [req.body.firstName, req.body.lastName, req.body.email, req.body.password, req.body.gender], 
+		                function(result)
 	{
 		//Triggers $.ajax/.done(function() in order to reload page with updates
 		res.json({
@@ -44,44 +56,6 @@ router.post("/api/proximity", function(req, res)
 	});
 });
 
-
-
-/*
-module.exports = function(app) 
-{
-	
- app.get("/api/:promity?", function(req, res) 
- {
- 	if (req.params.characters) 
-    {
-      //NOTE req.params.character is obtained by url: localhost3000/api/luke or
-      //when we search for luke and hit the [Search You Feelings you know it is true] button.
-
-      // Then display the JSON for ONLY that character.
-      // (Note how we're using the ORM here to run our searches)
-      
-    }
-    else
-    {
-
-    proximity.selectAll(function(data)
-	{
-		var proximityObject =
-		{
-			proximity: data
-		}
-
-		console.log(proximityObject);
-
-		//res.render("login.html", proximityObject);
-
-		
-	});
-    }
-
-
- });
- */
 
 //Export routes for server.js to use.
 module.exports = router;
