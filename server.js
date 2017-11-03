@@ -3,6 +3,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 
+
+
 //import routes & give the server access to them
 var routes = require("./controllers/proximity_controller.js");
 
@@ -14,13 +16,6 @@ var app = express();
 
 //server static content for app from the "public" directory in the application directory
 app.use(express.static("public"));
-
-//Routes
-//This allows html_routes.js to import app(app = exress())
-require("./routes/html_routes.js")(app);
-//require("./controllers/proximity_controller.js")(app);
-
-
 
 
 //bodyParser
