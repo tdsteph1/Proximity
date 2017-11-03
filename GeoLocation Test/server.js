@@ -1,43 +1,34 @@
 // Dependencies
 // =============================================================
-var express = require("express");
-var bodyParser = require("body-parser");
-var path = require("path");
+var express = require("express"); //enables the server and allows it to listen, and lets me use it and to do restful api requests.
+var bodyParser = require("body-parser");//enables to see the data - req.body wouldn't exist without this. Converts whatever I pass into as an JSON object.
+var path = require("path"); //part of node. we don't have to download this. in our routes, it allows us to use paths in our routing. path helps you get to where you are
 
 // Sets up the Express App
 // =============================================================
 var app = express();
 var PORT = 3000;
 
+//Requireing our models for syncing
+var db = require("./models");
+
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+// Static directory
+app.use(express.static("public"));
 
 // Routes
+// =======================================
+require("./routes/api-routes.js")(app);
+
+// Syncing our sequelize models and then starting our Express app
 // =============================================================
-
-// Basic route that sends the user first to the AJAX Page
-app.get("/", function(req, res) {
-  // res.send("Welcome to the Star Wars Page!")
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-
-// Create New Characters - takes in JSON input
-app.post("/api/new/userTimeAndLocation", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body-parser middleware
-  var userTimeAndLocation = req.body;
-
-  console.log(userTimeAndLocation);
-  console.log("\n");
-
-  // We then display the JSON to the users
-  res.json(userTimeAndLocation);
-});
-
-// Starts the server to begin listening
-// =============================================================
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });

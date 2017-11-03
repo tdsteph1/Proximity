@@ -65,7 +65,7 @@
 				document.getElementById("google_map").setAttribute("src", "https://maps.google.com/?q=" + coords + "&z=16&output=embed");
 
 				var userLocation = {
-					"userID": "username",
+					"userName": "username",
 					"date": getCurrentDate(),
 					"time": getCurrentTime(),
 					"coordinates": coords,
@@ -76,7 +76,7 @@
 
 				$.post("api/new/userTimeAndLocation", userLocation, 'json')
 				.done(function(response) {
-					console.log("User ID: " + response.userID);
+					console.log("User Name: " + response.userName);
 					console.log("Date: " + response.date);
 					console.log("Time: " + response.time);
 					console.log("Coordinates: " + response.coordinates);
