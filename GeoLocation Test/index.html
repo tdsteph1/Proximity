@@ -56,6 +56,12 @@
 			return currentTime;
 		};
 
+		//gets current userID
+		/*var getCurrentUserID = () => {
+			var currentUserID;
+			return currentUserID;
+		};*/
+
 		//function which gets the current users location. Has an optional parameter for repetition
 		var getLocation = (repeater) => {
 
@@ -73,7 +79,8 @@
 
 				//stores variables into an object
 				var userLocation = {
-					"userID": 2,
+					"userID": 2, //create function to get current userID;
+					//"userID": getCurrentUserID();
 					"date": getCurrentDate(),
 					"time": getCurrentTime(),
 					"coordinates": coords,
