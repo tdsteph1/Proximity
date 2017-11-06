@@ -1,0 +1,12 @@
+.screename{
+	float:right;margin-right:10%;
+}
+.picture{
+	width:100%;height:50%;border-radius:50%;margin-left:10%;
+}
+.hobbies{
+	height:150px;width:90%;margin-left:5%;margin-top:1%;
+}
+.contain{
+	width:30%;height:500px;margin-left:33%;margin-top:10%;background:url('shapes.png');border-radius:10px;
+}

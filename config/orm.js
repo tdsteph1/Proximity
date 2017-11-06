@@ -7,6 +7,37 @@ var decryptor = require("../public/assets/js/decryptor.js")
 
 var orm =
 {
+	findExistingUser: function(tableInput, email, pass, cb)
+	{
+		console.log("fixed " + email + " " + pass);
+		//console.log("email " + vals[0]);
+		//console.log("password " + vals[2]);
+		var queryString ="SELECT * FROM " + tableInput + ";"
+
+		//Bollean value we pass to our callback function to determine
+		//if user exist to open the profile html page.
+		var exists = false;
+
+		connection.query(queryString, function(err, result)
+		{
+			if(err)
+			{
+				throw err;
+			}
+
+			for(var i = 0; i < result.length; i++)
+			{
+				//Check the userName && decrypted password(using function) all at the same time
+				if(email === result[i].email &&  pass === decryptor.decryptPassword( result[i].password))
+				{
+					exists = true;
+				}
+			}
+
+			cb(exists);
+		});
+	},
+
 	//Display everthing currently in the database/ burgers TABLE
 	selectAll: function(tableInput, cb)
 	{
@@ -28,6 +59,9 @@ var orm =
 
 		connection.query(queryString, function(err, result)
 		{
+			//var decryptMsg = decryptor.decryptPassword(result[0].password);
+			//console.log("Current Password " + decryptMsg);
+
 			if(err)
 			{
 				throw err;

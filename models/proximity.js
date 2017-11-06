@@ -24,6 +24,17 @@ var proximity =
 		{
 			cb(res);
 		});
+	},
+
+	findExistingUser: function(email, pass, cb)
+	{
+
+		orm.findExistingUser("proximity", email, pass, function(res)
+		{
+			cb(res);
+		});
+
+
 	}
 
 
