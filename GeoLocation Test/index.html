@@ -151,7 +151,25 @@
 				$.post("/api/proximityUsers", data, "json")
 				.done(function(response) {
 
-					console.log(response[0]);
+
+					var res = Object.keys(response[0]); //converts the response object into an array
+					var resLength = res.length; //gets the array length
+
+					//loops through each item in the response and does something
+					for (var i = 0; i < resLength; i++) { 
+						console.log("PROXIMITY USER " + i);
+						console.log("User Name: " + response[0][i].userName);
+						console.log("Date: " + response[0][i].date);
+						console.log("Time: " + response[0][i].time);
+						console.log("Coordinates: " + response[0][i].coordinates);
+						console.log("Latitude: " + response[0][i].latitude);
+						console.log("Longitude: " + response[0][i].longitude);
+						console.log("Accuracy: " + response[0][i].accuracy + " feet");
+						console.log("Distance in Miles: " + response[0][i].distanceMiles + " miles");
+						console.log("Distance in Feet: " + response[0][i].distanceFeet + " feet");
+						console.log("\n");
+					};
+
 					/*var length = response[0][0].length;//finds the length of the response
 
 					console.log("PROXIMITY USERS");
@@ -168,8 +186,9 @@
 					console.log("\n");*/
 
 					/*var counter = 0;
-					response[0].forEach(function(proximityUser) {
+					userLocations.forEach(function(proximityUser) {
 
+						console.log(proximityUser);
 					console.log("PROXIMITY USER" + counter);
 					console.log("User Name: " + proximityUser.userName);
 					console.log("Date: " + proximityUser.date);
@@ -184,8 +203,6 @@
 
 					counter++;
 					});*/
-					
-					console.log(response[[0][0].length]);
 				});
 			};
 
