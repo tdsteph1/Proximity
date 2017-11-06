@@ -62,7 +62,7 @@ module.exports = function(app) {
     var userTimeAndLocation = req.body;
 
     db.userLocation.create({
-      userName: userTimeAndLocation.userName,
+      userID: userTimeAndLocation.userID,
       date: userTimeAndLocation.date,
       time: userTimeAndLocation.time,
       coordinates: userTimeAndLocation.coordinates,
