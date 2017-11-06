@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var userLocation = sequelize.define("userLocation", {
-    userName: DataTypes.STRING,
+    userID: DataTypes.STRING,
     date: DataTypes.STRING,
     time: DataTypes.STRING,
     coordinates: DataTypes.STRING,
