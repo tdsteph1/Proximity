@@ -73,7 +73,7 @@
 
 				//stores variables into an object
 				var userLocation = {
-					"userName": "username",
+					"userID": 2,
 					"date": getCurrentDate(),
 					"time": getCurrentTime(),
 					"coordinates": coords,
@@ -151,58 +151,30 @@
 				$.post("/api/proximityUsers", data, "json")
 				.done(function(response) {
 
-
-					var res = Object.keys(response[0]); //converts the response object into an array
-					var resLength = res.length; //gets the array length
+					var res = response[0]; //puts the response into a variable
+					var resLength = Object.keys(res).length; //gets the array length
 
 					//loops through each item in the response and does something
 					for (var i = 0; i < resLength; i++) { 
 						console.log("PROXIMITY USER " + i);
-						console.log("User Name: " + response[0][i].userName);
-						console.log("Date: " + response[0][i].date);
-						console.log("Time: " + response[0][i].time);
-						console.log("Coordinates: " + response[0][i].coordinates);
-						console.log("Latitude: " + response[0][i].latitude);
-						console.log("Longitude: " + response[0][i].longitude);
-						console.log("Accuracy: " + response[0][i].accuracy + " feet");
-						console.log("Distance in Miles: " + response[0][i].distanceMiles + " miles");
-						console.log("Distance in Feet: " + response[0][i].distanceFeet + " feet");
+						console.log("UserLocations ID: " + res[i].userID);
+						console.log("UserInfos ID: " + res[i].id);
+						console.log("First Name: " + res[i].firstName);
+						console.log("Last Name: " + res[i].lastName);
+						console.log("Email: " + res[i].email);
+						console.log("Password: " + res[i].password);
+						console.log("Gender: " + res[i].gender);
+						console.log("Profile Picture: " + res[i].profilePicture);
+						console.log("Date: " + res[i].date);
+						console.log("Time: " + res[i].time);
+						console.log("Coordinates: " + res[i].coordinates);
+						console.log("Latitude: " + res[i].latitude);
+						console.log("Longitude: " + res[i].longitude);
+						console.log("Accuracy: " + res[i].accuracy + " feet");
+						console.log("Distance in Miles: " + res[i].distanceMiles + " miles");
+						console.log("Distance in Feet: " + res[i].distanceFeet + " feet");
 						console.log("\n");
 					};
-
-					/*var length = response[0][0].length;//finds the length of the response
-
-					console.log("PROXIMITY USERS");
-					console.log(length);
-					console.log("User Name: " + response[0][10].userName);
-					console.log("Date: " + response[0][0].date);
-					console.log("Time: " + response[0][0].time);
-					console.log("Coordinates: " + response[0][0].coordinates);
-					console.log("Latitude: " + response[0][0].latitude);
-					console.log("Longitude: " + response[0][0].longitude);
-					console.log("Accuracy: " + response[0][0].accuracy + " feet");
-					console.log("Distance in Miles: " + response[0][0].distanceMiles + " miles");
-					console.log("Distance in Feet: " + response[0][0].distanceFeet + " feet");
-					console.log("\n");*/
-
-					/*var counter = 0;
-					userLocations.forEach(function(proximityUser) {
-
-						console.log(proximityUser);
-					console.log("PROXIMITY USER" + counter);
-					console.log("User Name: " + proximityUser.userName);
-					console.log("Date: " + proximityUser.date);
-					console.log("Time: " + proximityUser.time);
-					console.log("Coordinates: " + proximityUser.coordinates);
-					console.log("Latitude: " + proximityUser.latitude);
-					console.log("Longitude: " + proximityUser.longitude);
-					console.log("Accuracy: " + proximityUser.accuracy + " feet");
-					console.log("Distance in Miles: " + proximityUser.distanceMiles + " miles");
-					console.log("Distance in Feet: " + proximityUser.distanceFeet + " feet");
-					console.log("\n");
-
-					counter++;
-					});*/
 				});
 			};
 
@@ -300,6 +272,53 @@
 			
 			return false;
 		};*/
+
+/*userlocationsuserlocationsdrop database if exists location_db;
+create database location_db;
+
+use location_db;
+
+create table userLocation (
+ID int not null auto_increment primary key,
+UserId varchar(50),
+Date datetime not null,
+Time datetime not null,
+Coordinates varchar(100) not null,
+Latitude float8 not null,
+Longitude float8 not null,
+Country varchar(50),
+Municipality varchar(50),
+City varchar(50),
+Accuracy int not null
+);
+
+use location_db;
+
+#ALTER TABLE userlocations ADD pt POINT;
+#CREATE SPATIAL INDEX spacialIndex ON userlocations(pt);
+#join id from acct tbl to the account id in the geo table - username needs to be acct id 
+
+SET @Longitude = 33.500125600000004;
+SET @Latitude = -112.0740324;
+SET @dist = 10;
+SET @point = POINT(@latitude, @longitude);
+
+#As Miles
+SELECT *, (((ST_Distance(@point,POINT(latitude, longitude))*111195)*3.28)/5280) AS distanceMiles,
+(((ST_Distance(@point,POINT(latitude, longitude))*111195)*3.28)) AS distanceFeet
+FROM userlocations;
+#WHERE (((ST_Distance(@point,POINT(latitude, longitude))*111195)*3.28)) <= 30;
+#WHERE ST_Distance(@point,POINT(latitude, longitude)) <= @distance;
+
+#join the users table for username and return user information
+#investigate distinct clauses
+
+
+#select * from userlocations group by userName, coordinates;
+
+UPDATE userlocations SET latitude=(@temp:=latitude), latitude = longitude, longitude = @temp WHERE latitude < 0;
+
+CALL getProximity();*/
 	</script>
 </body>
 </html>
