@@ -44,66 +44,56 @@
 	//=========================================================================================
 		/*var moment = require("moment");*/
 
+		//moment.js function which gets the current date
 		var getCurrentDate = () => {
 			var currentDate = moment().utc().format("MM/d/YYYY");
 			return currentDate;
 		};
 
+		//moment.js function which gets the current time
 		var getCurrentTime = () => {
 			var currentTime = moment().utc().format("H:mm:ss");
 			return currentTime;
 		};
 
+		//function which gets the current users location. Has an optional parameter for repetition
 		var getLocation = (repeater) => {
 
+			//Function which runs if getting the users location was successful
 			var c = function(position) {
+
+				//stores coordinates into variables
 				var latitude = position.coords.latitude,
 				longitude = position.coords.longitude,
 				accuracy = position.coords.accuracy,
 				coords = latitude + ", " + longitude;
 
+				//Updates google map on page with the current location
 				document.getElementById("google_map").setAttribute("src", "https://maps.google.com/?q=" + coords + "&z=16&output=embed");
 
+				//stores variables into an object
 				var userLocation = {
 					"userName": "username",
 					"date": getCurrentDate(),
 					"time": getCurrentTime(),
 					"coordinates": coords,
-					"latitude": longitude,
-					"longitude": latitude,
+					"latitude": latitude,
+					"longitude": longitude,
 					"accuracy": accuracy
 				};
 
+				//post request which passes in the current users information into the database and returns that information
 				$.post("api/new/userTimeAndLocation", userLocation, 'json')
-				.done(function(response) {
-					console.log("User Name: " + response.userName);
-					console.log("Date: " + response.date);
-					console.log("Time: " + response.time);
-					console.log("Coordinates: " + response.coordinates);
-					console.log("Latitude: " + response.latitude);
-					console.log("Longitude: " + response.longitude);
-					console.log("Accuracy: " + response.accuracy + " feet");
-					console.log("\n");
-				});
+				.done(function(response) {});
 
-				/*console.log("User ID: ");
-				console.log("Date: " + getCurrentDate());
-				console.log("Time: " + getCurrentTime());
-				console.log("Coordinates: " + coords);
-				console.log("Latitude: ");
-				console.log("Longitude: ");
-				console.log("Country: ");
-				console.log("Municipality: ");
-				console.log("City: ");
-				console.log("Accuracy: " + accuracy + " feet");
-				console.log("\n");*/
-
+				//if optional repeater parameter exists, run the repeater function
 				if (repeater) {
 					repeater();
 				}
 
 			};
 
+			//Function to get the current location. If succesfull, runs function C. If error, runs function E.
 			navigator.geolocation.getCurrentPosition(c, e, {
 				enableHighAccuracy: true,
 				maximumAge: 60000,
@@ -126,24 +116,106 @@
 			getLocation();
 		});
 
-		var repeater = () => {
+		//function which repeats get location for a set amount of time and a set number of times
+		var repeater = ((duration, quantity) => {
 			var counter = 0;
 			var repeatLocation = setInterval(() => {
 				getLocation();
 				counter++;
-				if (counter >= 5) {
+				if (counter >= quantity) {
 					clearInterval(repeatLocation);
 				}
-			}, 5000);
-		};
+			}, duration);
+		});
 
-		var somefunction = function() {
-	console.log("this is a basic function");
-};
+		//function to call the database and get other users who are near you
+		var getProximity = ((distance) => {
+
+			//Function which runs if getting the users location was successful
+			var c = function(position) {
+
+				//stores coordinates in variables
+				var latitude = position.coords.latitude,
+				longitude = position.coords.longitude,
+				accuracy = position.coords.accuracy,
+				coords = latitude + ", " + longitude;
+
+				//stores variables into an object
+				var data = {
+				"latitude": latitude,
+				"longitude": longitude,
+				"distance": distance
+				};
+
+				//post request which passes in the current users coordinates and returns users near those coordinates
+				$.post("/api/proximityUsers", data, "json")
+				.done(function(response) {
+
+					console.log(response[0]);
+					/*var length = response[0][0].length;//finds the length of the response
+
+					console.log("PROXIMITY USERS");
+					console.log(length);
+					console.log("User Name: " + response[0][10].userName);
+					console.log("Date: " + response[0][0].date);
+					console.log("Time: " + response[0][0].time);
+					console.log("Coordinates: " + response[0][0].coordinates);
+					console.log("Latitude: " + response[0][0].latitude);
+					console.log("Longitude: " + response[0][0].longitude);
+					console.log("Accuracy: " + response[0][0].accuracy + " feet");
+					console.log("Distance in Miles: " + response[0][0].distanceMiles + " miles");
+					console.log("Distance in Feet: " + response[0][0].distanceFeet + " feet");
+					console.log("\n");*/
+
+					/*var counter = 0;
+					response[0].forEach(function(proximityUser) {
+
+					console.log("PROXIMITY USER" + counter);
+					console.log("User Name: " + proximityUser.userName);
+					console.log("Date: " + proximityUser.date);
+					console.log("Time: " + proximityUser.time);
+					console.log("Coordinates: " + proximityUser.coordinates);
+					console.log("Latitude: " + proximityUser.latitude);
+					console.log("Longitude: " + proximityUser.longitude);
+					console.log("Accuracy: " + proximityUser.accuracy + " feet");
+					console.log("Distance in Miles: " + proximityUser.distanceMiles + " miles");
+					console.log("Distance in Feet: " + proximityUser.distanceFeet + " feet");
+					console.log("\n");
+
+					counter++;
+					});*/
+					
+					console.log(response[[0][0].length]);
+				});
+			};
+
+			//function which runs if the browser cannot get the users location
+			var e = function(error) {
+				if (error.code === 1 ) { //error code 1 is when the user does not give us permission to get their location
+					alert("unable to get location");
+				} else if (error.code === 2) {
+					alert("Internet connection failed."); //error code 2 is when there is no internet connection
+				} else if (error.code === 3) {
+					alert("connection timed out"); //error code 3 is when the connection times out
+				}
+			};
+
+			//Function to get the current location. If succesfull, runs function C. If error, runs function E.
+			navigator.geolocation.getCurrentPosition(c, e, {
+				enableHighAccuracy: true,
+				maximumAge: 60000,
+				timeout: 2000
+			});
+			return false;
+
+		});
 
 		$(document).ready(() => {
-			getLocation(repeater);
-		
+			//gets the users location and repeats it. Parameter 1 is how many miliseconds to repeat, and parameter 2 is how many times to repeat
+			getLocation(repeater(60000, 1));
+
+			//gets the users location and finds other users in the database within a distance of whatever feet is passed into the function
+			getProximity(30);
 		})
 
 		

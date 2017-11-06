@@ -39,18 +39,27 @@ module.exports = function(app) {
 
   // Basic route that sends the user first to the AJAX Page
   app.get("/", function(req, res) {
-    // res.send("Welcome to the Star Wars Page!")
     res.sendFile(path.join(__dirname, "../index.html")); //creating the pathway for this file
   });
+
+  // Return all users within x feet
+    app.post("/api/proximityUsers", function(req, res) {
+      //gets the current latitude and longitude from the post request.
+      var latitude = req.body.latitude, 
+      longitude = req.body.longitude,
+      distance = req.body.distance
+
+      //uses sequelize to call a stored procedure which returns users and their distance. Sends this information through the response
+      db.sequelize.query("CALL getProximity(" + latitude + ", " + longitude + ", " + distance + ");", {type: db.sequelize.QueryTypes.SELECT}).then((query) => {
+        res.send(query);
+      });
+    });
 
   // Create New User Location - takes in JSON input
   app.post("/api/new/userTimeAndLocation", function(req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body-parser middleware
     var userTimeAndLocation = req.body;
-
-    console.log(userTimeAndLocation);
-    console.log("\n");
 
     db.userLocation.create({
       userName: userTimeAndLocation.userName,
@@ -63,6 +72,7 @@ module.exports = function(app) {
     }).then(function(dbUserLocation) {
       // We then display the JSON to the users
       res.json(dbUserLocation);
+
     });
   });
 
