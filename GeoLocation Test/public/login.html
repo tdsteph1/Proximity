@@ -39,10 +39,10 @@
    <form id="headerForm" class="form-inline create-form">
 
      <label id="nameText" for=""> Email </label> 
-    <input id="signInEmail"class="form-control mr-sm-2" type="text" placeholder="email" aria-label="Search">
+    <input id="signInEmail" class="form-control mr-sm-2 s1" type="text" placeholder="email" aria-label="Search">
 
     <div> <label id="passText" for=""> Password </label> </div>
-    <input id="signInPassword" class="form-control mr-sm-2" type="password" placeholder="password" aria-label="Search">
+    <input id="signInPassword" class="form-control mr-sm-2 s2" type="password" placeholder="password" aria-label="Search">
 
     <button type="submit" class="btn btn-primary btn-md" id="login-btn"> LogIn </button>
 
@@ -76,7 +76,7 @@
 
       <tr>
           <th height="100"> <i class="fa fa-users fa-3x" aria-hidden="true"></i> </th>
-          <th height="100"> New potential updated every hour so you don't have to worry! </th>
+          <th height="100"> New Friends with common interests updated every hour! </th>
       </tr>
 
     </table>
@@ -95,22 +95,22 @@
     <form class="form-inline">
       
        
-         <input type="text" class="form-control" id="firstName"  placeholder="First name"> 
-         <input type="text" class="form-control" id="lastName"   placeholder="Last name"> 
+         <input type="text" class="form-control f1" id="firstName"  placeholder="First name">  
+         <input type="text" class="form-control f2" id="lastName"   placeholder="Last name">   
 
     </form>
     <br>
 
-    <input type="email" class="form-control" id="email"  placeholder="Email">
+    <input type="email" class="form-control f3" id="email"  placeholder="Email">
     <br> 
 
-    <input type="password" class="form-control" id="password" placeholder="Password">
+    <input type="password" class="form-control f4" id="password" placeholder="Password">
     <br>
 
     <!-- radio buttons determin male or femal -->
     <form class="form-inline">
     
-      <input id="radioMale" type="radio" name="gender" value="male" checked> Male 
+      <input id="radioMale" type="radio" name="gender" value="male"> Male 
       <input id="radioFemale" type="radio" name="gender" value="female"> Female 
 
       <button type="submit" class="btn btn-primary btn-md" id="sign-btn"> SignUp </button>
@@ -125,13 +125,76 @@
 
 </div>
 
+<!-- Sign Up Modal(Displays when user missing data) -->
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title"  style="color:red;">Error</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
+        <p> Please Enter Your: </p>
+        <p class="errorType"></p>
 
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- Sign Up Modal(Displays when user missing data) -->
+<div class="modal" id="myModal2" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title"  style="color:red;">Error</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
+        <p> Please Enter Your: </p>
+        <p class="errorType2"></p>
 
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- User Does Not Exist Modal (When User Tries Logging In) -->
+<div class="modal" id="myModal3" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title"  style="color:red;">Error</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
+        <p> Invalid Credentials, Please Re-Enter Email and Password. </p>
+
+      </div>
+      <div class="modal-footer">
+        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </div>  <!-- End of container -->
 
@@ -144,4 +207,5 @@
 
 </body>
 </html>
+
 

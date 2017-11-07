@@ -1,7 +1,7 @@
 var express = require("express");
 var path = require("path");
 var loginInfo = require("../public/assets/js/loginInfo.js")
-var signedInUser = require("../public/assets/js/signedInUser.js")
+
 
 //(router) will get imported by (server.js)
 var router = express.Router();

@@ -62,7 +62,7 @@ module.exports = function(app) {
 
     var email = loginInfo[0];
     var pass = loginInfo[1];
-
+//loginInfo[1] = "";
     loginInfo = []; //clears the array of userinfo
 
     //query userinfo table and determine whether or not the user exists, checks the username and password

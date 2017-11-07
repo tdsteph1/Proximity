@@ -13,7 +13,7 @@ else
 		port: 3306,
 		host: "localhost",
 		user: "root",
-		password:"",
+		password:"Imcoool202",
 		database: "proximity_db"		//DB: location_db  Table: userLocations
 
 
