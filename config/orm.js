@@ -31,10 +31,13 @@ var orm =
 				if(email === result[i].email &&  pass === decryptor.decryptPassword( result[i].password))
 				{
 					exists = true;
+
+					//store object of mySQL Table element of array into variable
+					var obj = result[i];
 				}
 			}
 
-			cb(exists);
+			cb(exists, obj);
 		});
 	},
 
