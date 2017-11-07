@@ -5,91 +5,174 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="style.css"type="text/css"rel="stylesheet">
-<link href="profile.css">
+<link href="assets/css/profile.css"type="text/css"rel="stylesheet">
 
-
+<script src="assets/js/friendPool.js"></script>
 
 </head>
-
 <body>
-<div class="row"style="background:gray">
+<div class="contain">
+<div class="container-flud">
+<nav class="navbar navbar-default"style="background:#94b8b8;color:white;margin-bottom:0">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"style="font-size:25px;color:#f4f4f4">Proximity</a>
+   <img style="float:left;width:8%;height:6%"src="assets/image/large.png">
+    </div>
+ 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"class="active">Profile <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Finder</a></li>
+        <li><a href="#">Messages</a></li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- first row-->
+<div class="row"style="margin-bottom:0%">
+
+<div class="col-xs-2 edit"id="profileChange"style="height:500px">
+
+
+<h3 id="editProfile"style="color:gray">Edit Profile</h3>
+<form id="opal">
+
+<label for="firstNameEdit"> First Name:
+<input name="fullNameEdit"name="bio"style="border-radius:10px">
+</label>
+<label for="lastNameEdit"> Last Name:
+<input name="lastNameEdit"name="bio"style="border-radius:10px">
+</label>
+
+<label for="ageEdit">Age:
+<input name="ageEdit"name="bio"style="border-radius:10px">
+</label>
+
+
+
+<h3>Location:</h3>
+<label class="checkbox-inline">
+  <input type="checkbox" checked data-toggle="toggle"> On
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" data-toggle="toggle"> Off
+</label>
+
+
+
+<label for="firstName">Biography
+<input name="firstName"style="width:200px;height:100px"name="bio"style="border-radius:10px">
+</label>
+<button type="submit">Submit</button>
+</form>
+
 
 </div>
-<div class="contain jumbotron"style="width:30%;height:500px;margin-left:33%;margin-top:10%;background:url('shapes.png');border-radius:10px;">
+
+
+
+
+<div class="col-xs-6 profileContainer"style="height:460px">
+<img src="assets/image/nutty.jpg"class="profilePic">
+<div class="infoBox">
+
+<h3  data-username="usernames">Username:</h3>
+<h3 data-name="names">Name:</h3>
+<h3 data-age="ages">Age:</h3>
+<h3 data-locations="locations" >Location</h3>
+
+</div>
+
+<br>
+
+</div>
+
+
+<div class="col-xs-3 hobbyContainer edit"id="editHobby">
+
+<h3 id="hobbyForm"style="color:gray">Add a Hobby</h3>
+
+<form id="addTag">
+<label for="firstName">Tag:
+<input name="tags"style="width:100%"id="interest"placeholder=" Enter a tag">
+<button type="submit"id="hobbySub">Submit</button>
+</form>
+
+
+</div>
+</div>
+
+
+
+
+
+
+<!-- second row-->
 <div class="row">
-<h4 style="float:right;margin-right:10%">Screenname</h4>
-<div class="col-xs-4">
+
+<div class="col-xs-2"></div>
+
+<div class="col-xs-6 profileContainer">
 
 </div>
 
 
-<div class="col-xs-4">
-<img src="person.jpg"style="width:100%;height:50%;border-radius:50%;margin-left:10%">
-</div>
-
-<div class="col-xs-3"></div>
-
-
-</div>
-
-<div class="row">
-<div class="col-xs-2">
+<div class="col-xs-3"class="hobbyContainer"></div>
 
 </div>
 
 
-<div class="col-xs-4">
-<h3 style="float:left">Name:</h3>
-
-</div>
-<div class="col-xs-3"></div>
 
 
 
-</div>
-
-
-<div class="row">
-<div class="col-xs-2">
-
-</div>
-
-
-<div class="col-xs-4">
-<h3 style="float:left">Age:</h3>
-
-</div>
-<div class="col-xs-3"></div>
 
 
 
-</div>
-<div class="row">
-<div class="col-xs-2">
-
-</div>
 
 
-<div class="col-xs-4">
-<h3 style="float:left">Location:</h3>
+<!-- final row-->
 
-</div>
-<div class="col-xs-3"></div>
+<div class="row"style="position:relative;bottom:120px">
+<div class="col-xs-2"></div>
 
+<div class="col-xs-6 hobbyButtons">
+
+<h4 class="info" style="float:left;margin-bottom:4%;color:grey;">Tags </h4>
+
+<div class="tagContain"style="margin-left:5%;float:left;margin-bottom:2%;width:90%;">
+
+
+<button class="btn btn-danger tag">Javascript</button>
+<button class="btn btn-danger tag">Hiking</button>
+<button class="btn btn-danger tag">Engineering</button>
+<button class="btn btn-danger tag">ASU</button>
+<button class="btn btn-danger tag">Guitar</button>
+<button class="btn btn-danger tag">Camping</button>
 
 
 </div>
 
-<div class="row hobbies"style="height:150px;width:90%;margin-left:5%;margin-top:1%">
-<h2 style="text-align:center">Hobbies</h2>
+
+<div class="col-xs-3"class="hobbyContainer">
+
 </div>
-
-
-
 
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="profile.js"></script>
+
+<script src="assets/js/profile.js"></script>
 </body>
 </html>
+

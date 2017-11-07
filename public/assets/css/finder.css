@@ -1,0 +1,49 @@
+.finderContainer {
+	border-radius:10px;
+	
+	
+
+}
+
+.profileContainer {
+	width:350px;
+	height:360px;
+	border-radius:13px;
+	border-right: 1px solid black;
+	margin-left:5%;
+	background:url("../image/pug.jpg");
+	float:left;
+	box-shadow: 3px 13px 30px #888888;
+	margin-top:1%;
+
+}
+.profileImage {
+	float:left;
+	width:30%;
+	height:30%;
+	margin-left:1%;
+	margin-top:1%;
+	border-radius:50%;
+
+	
+}
+.infoContainer {
+	clear:both;
+	margin-top:0%;
+	border:1px solid;
+	width:40%;
+	height:40%;
+}
+.hobbyContainer {
+	float:right;
+	margin-right:10%;
+margin-bottom:4%;
+	border:2px solid black;
+	width:50%;
+	height:30%;
+}
+body {
+	background:url("../image/curls.png")
+}
+
+

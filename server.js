@@ -4,7 +4,6 @@ var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 
 
-
 //import routes & give the server access to them
 var routes = require("./controllers/proximity_controller.js");
 
@@ -33,3 +32,8 @@ app.use("/", routes);
 
 
 app.listen(PORT);
+
+
+app.get("/finder",function(req,res){
+	res.sendFile(__dirname+"public/finder.html");
+});
