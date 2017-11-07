@@ -29,11 +29,12 @@ var proximity =
 	findExistingUser: function(email, pass, cb)
 	{
 
-		orm.findExistingUser("proximity", email, pass, function(res)
+		orm.findExistingUser("proximity", email, pass, function(res, obj)
 		{
-			cb(res);
+			console.log("models " + res);
+			console.log("models " + obj);
+			cb(res, obj);
 		});
-
 
 	}
 
