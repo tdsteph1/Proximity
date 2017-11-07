@@ -1,12 +1,121 @@
-.screename{
-	float:right;margin-right:10%;
+.container-flud{
+width:90%;margin-left:5%;
+
+border-radius:10px;
 }
-.picture{
-	width:100%;height:50%;border-radius:50%;margin-left:10%;
+.edit {
+	
+	border-radius:17px;
+	text-align:center;
+	
+	
 }
-.hobbies{
-	height:150px;width:90%;margin-left:5%;margin-top:1%;
+
+.profileContainer {
+	border-left:1px black solid;
+	border-right:1px black solid;
+background:url("../image/pug.jpg");
 }
-.contain{
-	width:30%;height:500px;margin-left:33%;margin-top:10%;background:url('shapes.png');border-radius:10px;
+.profilePic {
+	border:1px solid black;
+	border-radius:10px;
+	height:80%;
+	width:50%;
+	margin-right:2%;
+	  position:relative;
+	  right:20px;
+	box-shadow: 3px 13px 30px #888888;
+}
+.infoBox {
+	float:right;
+	margin-right:25%;
+margin-top:5%;
+	height:20%;
+	color:gray !important;
+}
+.infoBox h3{
+	color:gray !important;
+}
+
+.hobbyButtons {
+	border-right:1px solid black;
+	border-left:1px solid black;
+	border-radius:8px;text-align:center;
+	border-bottom:1px solid black;
+	background:url("../image/constant.png");
+	color:gray;
+	background:url("../image/constant.png");
+}
+.tag {
+	margin-left:5%;
+	float:left;
+color:#f4f4f4;
+	margin-bottom:2%;
+	opacity:1;
+	transition: ease-in-out 2s all;
+}
+
+ 
+#opal{
+	opacity:0;
+	
+
+
+}
+#addTag{
+	opacity:0;
+	
+	color:gray;
+
+}
+#addTag input 
+{background:#f4f4f4;}
+.info1 h3 {
+	margin-top:22%;
+	color:gray;
+
+}
+
+#addTag button {
+	border-radius:20px;
+	background-color:gray;
+	color:#f4f4f4;
+}
+#opal button {
+	background-color:gray;
+	border-radius:20px;
+	color:#f4f4f4;
+}
+#opal input {
+	background-color:#f4f4f4;
+}
+.btn-danger{
+	background-color:#006666;
+	color:#f4f4f4;
+}
+.btn-danger:hover {
+	background-color:pink;
+}
+.btn-danger:hover {
+	background:purple;
+  color:#f4f4f4;
+  -webkit-transition: background-color .5s ease-in;
+  
+}
+.edit {
+	border-top:1px solid black;
+	border-radius:20px;
+}
+.contain {
+	background:url(	"../image/curls.png");
+	
+}
+h3 {
+	color:#f4f4f4;
+}
+input {
+	margin-bottom:2%;
+}
+.activ {
+	background:#94b8b8 !important;
 }

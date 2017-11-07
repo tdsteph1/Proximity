@@ -20,12 +20,7 @@ body
 	margin-left: 100px;
 	font-weight: bold;
 	font-family: "Arial", Times, serif;
-	font-size: 30px;
-
-
-	
-
-    
+	font-size: 30px; 
 }
 
 /*userName */
@@ -143,7 +138,18 @@ form
 
 .inputArea
 {
-	
-
     margin-top: 30px;
+}
+
+/*Moves the title inside Modal to the center */
+.modal-title
+{
+	margin-left: 180px;
+}
+
+/*Makes the error types inside modal red and bold */
+.errorType
+{
+	font-weight: bold;
+	color: red;
 }

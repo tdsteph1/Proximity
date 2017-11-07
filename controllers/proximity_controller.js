@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 var loginInfo = require("../public/assets/js/loginInfo.js")
+var signedInUser = require("../public/assets/js/signedInUser.js")
 
 //(router) will get imported by (server.js)
 var router = express.Router();
@@ -59,29 +60,38 @@ router.get("/api/:email_pass", function(req, res)
 	//(req.params.email_pass) contains an array of characters: email & password.
 	//instead of (req.params.email_pass) we use (email) & (pass) instead.
 	//furnction(data) gets executed by orm.js/findExistingUser/cb(exists).
-	proximity.findExistingUser(email, pass, function(data)
+	proximity.findExistingUser(email, pass, function(data, obj)
 	{
 		
 
 		//Displays inside console the mySQL array of TABLE objects
 		//stored inside our proximity table.
-		console.log(data);
+		console.log("controller " + data);
+		console.log("controller " + obj);
+		//console.log("controller" + obj.email);
 
-		
-		
-			
-		
+		if(data === true)
+		{
 
+
+			var signInUserObject =
+			{
+				obj: obj,
+				signIn: data
+			}
+
+			console.log("obj " + signInUserObject.obj);
+			console.log("obj " + signInUserObject.signIn);
+		}
 		//displays an array of MySQL TABLE objects when we do (http://localhost:3000/api/email_pass)
 		//Also invokes the callback(.then(function()) function at login.js/.then(function(data).
 		//Furthermore (data) is a boolean value which determines if user exists or not when signing in.
+		//data: contains boolean value so (http://localhost:3000/api/email_pass) displays true or false
 		res.json(data);
 
 		//If user exists open up main (profile page)
 		
 		
-
-
 	});
 
 	
@@ -93,6 +103,7 @@ router.get("/api/:email_pass", function(req, res)
 router.post("/api/proximity", function(req, res)
 {
 	//here we are invoking insertOne() function inside (models/proximity.js).
+	console.log(req);
 	proximity.insertOne(["firstName", "lastName", "email", "password", "gender"], 
 		                [req.body.firstName, req.body.lastName, req.body.email, req.body.password, req.body.gender], 
 		                function(result)
@@ -101,6 +112,7 @@ router.post("/api/proximity", function(req, res)
 		res.json({
 
 			id: result.insertId
+
 		});
 
 	});
