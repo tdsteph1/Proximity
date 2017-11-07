@@ -8,6 +8,10 @@
 // Requiring our Todo model
 var db = require("../models");
 var path = require("path");
+var loginInfo = require("../public/assets/js/loginInfo.js");
+var guid = require("guid");
+var CryptoJS = require("../public/assets/js/encryptor.js");
+var decryptor = require("../public/assets/js/decryptor.js");
 
 // Routes
 // =============================================================
@@ -38,22 +42,78 @@ module.exports = function(app) {
   });*/
 
   // Basic route that sends the user first to the AJAX Page
-  app.get("/", function(req, res) {
+  /*app.get("/index", function(req, res) {
     res.sendFile(path.join(__dirname, "../index.html")); //creating the pathway for this file
+  });*/
+
+  //gets all users from database - userinfo table
+  app.get("/", function(req, res) {
+    db.sequelize.query("SELECT * FROM userinfos",{type: db.sequelize.QueryTypes.SELECT}).then((result) => {
+      console.log(result);
+      res.sendFile(path.join(__dirname, "../public/login.html")); //creating the pathway for this file
+    });
+  });
+
+  //obtains the username and password of the person signing in
+  app.get("/api/:email_pass", function(req, res) {
+    var exists = false;
+
+    console.log("api/email");
+
+    var email = loginInfo[0];
+    var pass = loginInfo[1];
+
+    loginInfo = []; //clears the array of userinfo
+
+    //query userinfo table and determine whether or not the user exists, checks the username and password
+    db.sequelize.query("SELECT * FROM userinfos;", {type: db.sequelize.QueryTypes.SELECT}).then((result) => {
+      for (var i = 0; i < result.length; i++) {
+        if (email === result[i].email && pass === decryptor.decryptPassword(result[i].password)) {
+          /*&& pass === decryptor.decryptPassword(result[i].password*/
+          exists = true;
+          var obj = result[i];
+        }
+      }
+      /*cb(exists, obj);*/
+      res.send(exists);
+    });
+  });
+
+  //Creates a new user
+  app.post("/api/proximity", function(req, res) {
+    var newUser = req.body;
+     console.log(newUser.password);
+    db.userInfo.create({
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      email: newUser.email,
+      password: CryptoJS.encryptPassword(newUser.password),//newUser.password,
+      gender: newUser.gender
+    }).then(function(dbNewUser) {
+      console.log("enc: " + dbNewUser.password);
+      res.json(dbNewUser.id);
+    });
+  });
+
+  // pushes the email and password into the loginInfo remote array
+  app.post("/api/login", function(req, res) {
+    loginInfo.push(req.body.email);
+    loginInfo.push(req.body.password);
   });
 
   // Return all users within x feet
-    app.post("/api/proximityUsers", function(req, res) {
-      //gets the current latitude and longitude from the post request.
-      var latitude = req.body.latitude, 
-      longitude = req.body.longitude,
-      distance = req.body.distance
+  app.post("/api/proximityUsers", function(req, res) {
+    //gets the current latitude and longitude from the post request.
+    var latitude = req.body.latitude, 
+    longitude = req.body.longitude,
+    distance = req.body.distance
 
-      //uses sequelize to call a stored procedure which returns users and their distance. Sends this information through the response
-      db.sequelize.query("CALL getProximity(" + latitude + ", " + longitude + ", " + distance + ");", {type: db.sequelize.QueryTypes.SELECT}).then((query) => {
-        res.send(query);
-      });
+    //uses sequelize to call a stored procedure which returns users and their distance. Sends this information through the response
+    db.sequelize.query("CALL getProximity(" + latitude + ", " + longitude + ", " + distance + ");", {type: db.sequelize.QueryTypes.SELECT}).then((query) => {
+      res.send(query);
     });
+  });
+
 
   // Create New User Location - takes in JSON input
   app.post("/api/new/userTimeAndLocation", function(req, res) {
@@ -75,6 +135,11 @@ module.exports = function(app) {
 
     });
   });
+
+
+
+  //
+
 
   // DELETE route for deleting todos. We can get the id of the todo we want to delete from
   // req.params.id
