@@ -4,7 +4,7 @@ var friendPool = [
 	lastName: "Khodr",
 	age: 19,
 	username: "marcorules456",
-	picLink: "me1.png",
+	picLink: "assets/image/me1.png",
 	bio: "Arizona"
 },
 {
@@ -12,7 +12,7 @@ var friendPool = [
 	lastName: "Muka",
 	age: 19,
 	username: "mukarules456",
-	picLink: "me2.png",
+	picLink: "assets/image/me2.png",
 	bio: "Arizona"
 },
 {
@@ -20,7 +20,7 @@ var friendPool = [
 	lastName: "Ramiro",
 	age: 19,
 	username: "ramiro555",
-	picLink: "me3.png",
+	picLink: "assets/image/me3.png",
 	bio: "Arizona"
 },
 {
@@ -28,7 +28,7 @@ var friendPool = [
 	lastName: "Wix",
 	age: 19,
 	username: "wixie",
-	picLink: "m4.png",
+	picLink: "assets/image/nutty.jpg",
 	bio: "Arizona"
 },
 {
@@ -36,7 +36,7 @@ var friendPool = [
 	lastName: "Johnson",
 	age: 19,
 	username: "rebbeca4",
-	picLink: "me5.png",
+	picLink: "assets/image/me5.jpg",
 	bio: "Arizona"
 }
 

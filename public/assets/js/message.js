@@ -23,8 +23,7 @@ var message = $("<h3>").addClass("message").text("Example Text");
 	profilePic.addClass(".pictureId"+i);
 	messageContainer.addClass("messageContainerId"+i);
 	  message.addClass("messageId"+i);
-	profilePic.attr("src","egg.jpg");
-
+	profilePic.attr("src","assets/image/egg.jpg");
 	messageBorder.appendTo(".contain");
 	profilePic.addClass("proLink");
 	buffer.appendTo(".row");
