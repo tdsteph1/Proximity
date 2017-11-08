@@ -1,6 +1,7 @@
 body
 {
 	background:	url("../image/curls.png");
+	color:#f4f4f4;
 }
 /* this controls the blue header with username & password */
 .navbar
