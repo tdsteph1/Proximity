@@ -40,8 +40,8 @@ var orm =
 			//If user exists then store logged in user into the table for logged in user
 			if(exists === true)
 			{
-				connection.query("INSERT INTO logIn (email, password) VALUES (?, ?)",
-				[email, pass],
+				connection.query("INSERT INTO logIn (email, firstName, password) VALUES (?, ?, ?)",
+				[email, obj.firstName, pass],
 
 				function(err)
 				{
@@ -145,20 +145,29 @@ var orm =
 		});
 
 
-	}
+	},
 
+	//Deletes logged in users when signing out of our logIn TABLE
+	//in order for the table not to overpopulate with multiple users.
+	delete: function(table, condition, cb) 
+  	{
+    	var queryString = "DELETE FROM " + table;
 
+    	queryString = queryString + " WHERE ";
+    	queryString = queryString + condition;
 
+    	connection.query(queryString, function(err, result) 
+    	{
+      		if (err) 
+      		{
+        		throw err;
+      		}
 
+      		cb(result);
+    	});
+  	}
 
 };
-
-
-
-
-
-
-
 
 
 

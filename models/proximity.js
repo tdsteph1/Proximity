@@ -44,7 +44,15 @@ var proximity =
 			cb(res, obj);
 		});
 
-	}
+	},
+
+	delete: function(condition, cb) 
+  	{
+    	orm.delete("logIn", condition, function(res) 
+    	{
+      		cb(res);
+    	});
+  }
 
 
 
