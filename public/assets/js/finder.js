@@ -47,6 +47,25 @@ var friendPool = [
 
 var idCounter="id"+0;
 var background = [];
+// $.ajax({
+// 	url: "http://localhost:3000/user",
+// 	method: "GET",
+// 	crossDomain: true,
+// 	data: {email: "johndoe@email.com"}
+
+// }).done(function(data){
+// console.log(data);
+// });
+
+$.ajax ({
+	url: "http://localhost:3000/api/:email_pass",
+	method: "GET",
+	crossDomain: true,
+	data: {email: "johndoe@gmail.com",pass:"password1"}
+
+}).done(function(response){
+	console.log(response);
+});
 
 function tinderRoll(){
 

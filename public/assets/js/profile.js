@@ -47,8 +47,13 @@ var friendPool = [
 
 
 ];
+$.ajax({
+	url: "http://localhost:3000/api/johndoe@gmail.com_password1",
 
 
+}).done(function(response){
+	console.log(response);
+});
 
 console.log(friendPool);
 
@@ -75,7 +80,6 @@ function searching(){
 		}
 
 }
-
 
 
 $("#editProfile").on("click",function(){

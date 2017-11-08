@@ -23,12 +23,15 @@
   "homepage": "https://github.com/tdsteph1/Proximity#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "crypto-js": "^3.1.9-1",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "guid": "0.0.12",
+    "http": "0.0.0",
     "method-override": "^2.3.10",
     "mysql": "^2.15.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "socket.io": "^2.0.4"
   }
 }

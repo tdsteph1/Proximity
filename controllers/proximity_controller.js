@@ -28,13 +28,33 @@ router.get("/", function(req, res)
 		//our Table objects EX: API: { [ ]}
 	});
 
+
 	//This allows us to open up home page(login.html)
 	//NOTE: DO NOT USE Routes/html_routes.js && api_routes since
 	//      having those prevents GET from working properley.
 	//      instead have controller deal with those 2 things.
 	res.sendFile(path.join(__dirname, "../public/login.html"));		
+
+});
+router.get("/hello",function(req,res){
+	console.log(req);
+	res.json({data:"hello"});
 });
 
+router.get("/messages",function(req,res){
+	
+	console.log(req.query.email);
+	proximity.findExistingUser(email,"password1",function(data,obj){
+		console.log(data);
+	});
+});
+
+router.post("/messages",function(req,res){
+	var message = req.query.message;
+	var sender = req.query.email;
+	// make request to post message here
+	var reciever = req.query.emailSentTo;
+});
 //This is for existing user siging in (email), (password)
 router.get("/api/:email_pass", function(req, res)
 {
@@ -47,7 +67,9 @@ router.get("/api/:email_pass", function(req, res)
 	//then obtain the current user values logging in (email) & (password)
 	//The reason we are using a remote array inside (loginInfo.js) becuase
 	//req.params.email_pass gives us and array of characters with delimiter.
-	//EX: (email),(password) and using the index[] only returns a letter.
+	// //EX: (email),(password) and using the index[] only returns a letter.
+	// var email = req.query.email;
+	// var pass = req.query.pass;
 	var email = loginInfo[0];
 	var pass =  loginInfo[1];
 	
