@@ -55,7 +55,8 @@ module.exports = function(app) {
   });
 
   //obtains the username and password of the person signing in
-  app.get("/api/:email_pass", function(req, res) {
+  app.get("/api/:email_pass", function(req, res) 
+  {
     var exists = false;
 
     console.log("api/email");
@@ -66,17 +67,29 @@ module.exports = function(app) {
     loginInfo = []; //clears the array of userinfo
 
     //query userinfo table and determine whether or not the user exists, checks the username and password
-    db.sequelize.query("SELECT * FROM userinfos;", {type: db.sequelize.QueryTypes.SELECT}).then((result) => {
+    db.sequelize.query("SELECT * FROM userinfos;", {type: db.sequelize.QueryTypes.SELECT}).then((result) => 
+    {
       for (var i = 0; i < result.length; i++) {
-        if (email === result[i].email && pass === decryptor.decryptPassword(result[i].password)) {
+        if (email === result[i].email && pass === decryptor.decryptPassword(result[i].password)) 
+        {
           /*&& pass === decryptor.decryptPassword(result[i].password*/
           exists = true;
           var obj = result[i];
         }
       }
       /*cb(exists, obj);*/
+     // res.sendFile(path.join(__dirname, "../public/test.html"));
       res.send(exists);
+      //console.log("YYYYYYYYYYYYYYYY");
+      
+       //res.render('index.html',{});
+    }).catch(function(e) {
+      console.log(e);
     });
+
+
+   // res.sendFile(path.join(__dirname, "../public/test.html"));
+
   });
 
   //Creates a new user
