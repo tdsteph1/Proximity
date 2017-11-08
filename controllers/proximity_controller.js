@@ -1,6 +1,7 @@
 var express = require("express");
 var path = require("path");
 var loginInfo = require("../public/assets/js/loginInfo.js")
+var mysql = require("mysql");
 
 
 //(router) will get imported by (server.js)
@@ -34,6 +35,35 @@ router.get("/", function(req, res)
 	//      having those prevents GET from working properley.
 	//      instead have controller deal with those 2 things.
 	res.sendFile(path.join(__dirname, "../public/login.html"));		
+
+});
+
+//loginTable
+router.get("/api/userInfo", function(req, res)
+{
+	console.log("yeahddddddddddddddddddddddddddddd");
+	proximity.selectAllUsers(function(data)
+	{
+		var proximityObject =
+		{
+			proximity: data
+		}
+
+		//Displays inside console the mySQL array of TABLE objects
+		//stored inside our proximity table.
+		console.log(proximityObject);
+		res.json(data);
+
+		//TRY: res.json(proximityObject); here, which will display API of
+		//our Table objects EX: API: { [ ]}
+	});
+
+
+	//This allows us to open up home page(login.html)
+	//NOTE: DO NOT USE Routes/html_routes.js && api_routes since
+	//      having those prevents GET from working properley.
+	//      instead have controller deal with those 2 things.
+		
 
 });
 router.get("/hello",function(req,res){
@@ -102,7 +132,7 @@ router.get("/api/:email_pass", function(req, res)
 				signIn: data
 			}
 
-			console.log("obj " + signInUserObject.obj);
+			console.log("obj " + signInUserObject.obj.email);
 			console.log("obj " + signInUserObject.signIn);
 		}
 		//displays an array of MySQL TABLE objects when we do (http://localhost:3000/api/email_pass)

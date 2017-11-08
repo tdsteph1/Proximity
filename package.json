@@ -33,7 +33,16 @@
     "mysql": "^2.15.0",
     "mysql2": "^1.4.2",
     "path": "^0.12.7",
+<<<<<<< HEAD
+    "pg": "^6.4.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.22.5",
+    "socket.io": "^2.0.4",
+    "sqlite3": "^3.1.13",
+    "tedious": "^2.1.1"
+=======
     "sequelize": "^4.22.5",
     "socket.io": "^2.0.4"
+>>>>>>> a01def8ecd33f3f99427ea2fd6a3f3056c616387
   }
 }

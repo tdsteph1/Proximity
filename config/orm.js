@@ -37,6 +37,19 @@ var orm =
 				}
 			}
 
+			//If user exists then store logged in user into the table for logged in user
+			if(exists === true)
+			{
+				connection.query("INSERT INTO logIn (email, password) VALUES (?, ?)",
+				[email, pass],
+
+				function(err)
+				{
+					if(err) throw err;
+					console.log("logIn database success");
+				});
+			}
+
 			cb(exists, obj);
 		});
 	},
@@ -44,18 +57,7 @@ var orm =
 	//Display everthing currently in the database/ burgers TABLE
 	selectAll: function(tableInput, cb)
 	{
-		/*
-		// Encrypt
-		var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123');
-
-
-		// Decrypt
-		var bytes  = CryptoJS.AES.decrypt(ciphertext.toString(), 'secret key 123');
-		var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-
-		console.log(ciphertext.toString());
-		console.log(plaintext);
-	    */
+		
 	   
 
 		var queryString = "SELECT * FROM " + tableInput + ";";
@@ -70,18 +72,34 @@ var orm =
 				throw err;
 			}
 
-			/*
-			for(var i = 0; i < result.length; i++)
-		    {
-			    console.log("ID: " + result[i].id + " | " +
-						    "First Name: " + result[i].firstName + " | " +
-							"Last Name: " + result[i].lastName + " | " +
-							"Email: " + result[i].email  + " | " +
-							"Password: " + result[i].password  + " | " +
-							"Gender: " + result[i].gender );
+			
 
-		    }
-		    */
+			//without this then we would not have reload with updates on page
+			cb(result);
+
+		});
+
+
+	},
+
+	selectAllUsers: function(tableInput, cb)
+	{
+		
+	   
+
+		var queryString = "SELECT * FROM " + tableInput + ";";
+
+		connection.query(queryString, function(err, result)
+		{
+			//var decryptMsg = decryptor.decryptPassword(result[0].password);
+			//console.log("Current Password " + decryptMsg);
+
+			if(err)
+			{
+				throw err;
+			}
+
+			
 
 			//without this then we would not have reload with updates on page
 			cb(result);
