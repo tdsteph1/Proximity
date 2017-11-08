@@ -10,7 +10,10 @@ border-radius:10px;
 	
 	
 }
-
+.icons {
+  width:5%;
+  height:5%;
+}
 .profileContainer {
 	border-left:1px black solid;
 	border-right:1px black solid;

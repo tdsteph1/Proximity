@@ -125,7 +125,7 @@ router.get("/api/:email_pass", function(req, res)
 router.post("/api/proximity", function(req, res)
 {
 	//here we are invoking insertOne() function inside (models/proximity.js).
-	console.log(req);
+	
 	proximity.insertOne(["firstName", "lastName", "email", "password", "gender"], 
 		                [req.body.firstName, req.body.lastName, req.body.email, req.body.password, req.body.gender], 
 		                function(result)

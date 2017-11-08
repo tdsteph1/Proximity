@@ -1,0 +1,31 @@
+.messageContainer:hover {
+	background-color: #D2DAE8;
+   
+
+    transition: background-color 500ms linear;
+}
+.messageContainer {
+	background:#f4f4f4;;
+   border-radius:13px;
+   border-bottom: gray 1px solid;
+   margin-top:.1%;
+ 
+}
+.namer {
+	opacity:.7;margin-left:1%;
+}
+
+.picPreview {
+	float:left;border-radius:30%;width:9%;height:11%;
+	margin-right:3%;
+}
+.message {
+	float:right:margin-left:20%;display:inline-block;opacity:.7;
+	margin-top:4%;
+}
+.col-xs-10{
+	margin-left:8%;
+}
+body {
+	background: url("../image/curls.png");
+}

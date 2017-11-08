@@ -6,7 +6,7 @@ $(function()
 
 
 	//Existing user logging in [LogIn] button
-	$(".create-form").on("submit", function(event)
+	$("#headerForm").on("submit", function(event)
 	{
 
 		event.preventDefault();

@@ -2,12 +2,13 @@ body
 {
 	background:	url("../image/curls.png");
 	color:#f4f4f4;
+
 }
 /* this controls the blue header with username & password */
 .navbar
 {
-	height: 80px;
-	background: #3b5998;
+	height: 60px;
+	background: #94b8b8;
 	color: white;
 
 	
