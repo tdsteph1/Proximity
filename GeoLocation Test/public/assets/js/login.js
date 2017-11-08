@@ -76,6 +76,12 @@ $(function()
 					$("#myModal3").modal('show');
 				}
 			});
+
+			//Andrew Added here to post the session storage
+			$.post("/api/getUserInfo/" + sessionStorage.email)
+            .done(function(response) {
+                    sessionStorage.setItem('id', response[0].id);
+            });
 		}
 	});
 
