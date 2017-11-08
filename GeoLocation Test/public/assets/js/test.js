@@ -1,31 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Get Location</title>
-	<!-- jQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-</head>
-<body>
-	<a href="#" id="get_location">Get Location</a>
-	<div id="map">
-		<iframe id="google_map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com?output=embed" frameborder="0"></iframe>
-	</div>
-	<div id="location_details">
-		
-	</div>
-	
-	<script src="assets/js/geoposition.js" type="text/javascript"></script>
-	<script src="assets/js/modernizr.js" type="text/javascript"></script>
-	
-	<script src="assets/js/test.js" type="text/javascript"></script>
-<!--
-	 <script> 
+//Seperate this file to Test.js
 
-
-	//Seperate this file to Test.js
-
+//alert("t");
 		//moment.js function which gets the current date
 		var getCurrentDate = () => {
 			var currentDate = moment().utc().format("MM/d/YYYY");
@@ -38,7 +13,6 @@
 			return currentTime;
 		};
 
-		//don't use
 		//gets current userID
 		/*var getCurrentUserID = () => {
 			var currentUserID;
@@ -220,11 +194,3 @@
 			//gets the users location and finds other users in the database within a distance of whatever feet is passed into the function
 			getProximity(30);
 		})
-
-		
-	//VIDEO 3
-	//=========================================================================================
-	</script>
--->
-</body>
-</html>

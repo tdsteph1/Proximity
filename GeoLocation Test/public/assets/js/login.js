@@ -53,17 +53,15 @@ $(function()
 			$.get("/api/" + email_password, function(data)
 			{
 				console.log(data);
-			}).then(function(data)
-			{
-			
 
-			//data from our callback is boolean value which indicates
-			//if the email and password exists if so then login user.
-			if(data == true)
-			{
+				//data from our callback is boolean value which indicates
+				//if the email and password exists if so then login user.
+				if(data == true)
+				{
 					//Login in the user onto profile
 					console.log("user exists");
 					$(location).attr('href', 'test.html');
+
 
 					//clear textfiels email & password
 					$("#signInEmail").val("");
@@ -72,7 +70,7 @@ $(function()
 				}
 				else
 				{
-					console.log("user does not exist");
+					console.log("user does not exist or invalid credentials");
 
 					//Display Error Message
 					$("#myModal3").modal('show');
