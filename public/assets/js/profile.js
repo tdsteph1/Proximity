@@ -53,12 +53,35 @@ var friendPool = [
 ];
 
 
-$.get("/api/userInfo", function(data)
-			{
-				console.log("profile.js");
-				console.log(data[0].email);
-				$("#thename").html(data[0].email);
-			});
+$.get("/api/userInfo/", function(data)
+{
+	console.log("profile.js");
+	console.log(data[0].email);
+	console.log(data[0].firstName);
+	console.log("size " + data.length);
+	$("#theEmail").html(data[0].email);
+	$("#theName").html(data[0].firstName);
+	$("#theAge").html("25");
+	$("#theLocation").html("Phoenix, AZ");
+
+	//Clear table
+	// Send the DELETE request.
+	/*
+    $.ajax("/api/userInfo/" + data[0].id, 
+    {
+      type: "DELETE",
+
+    }).then(function() 
+    {
+        console.log("deleted cat", id);
+
+        // Reload the page to get the updated list
+        //location.reload();
+    });
+    */
+
+
+});
 			
 
 

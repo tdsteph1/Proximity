@@ -38,10 +38,11 @@ router.get("/", function(req, res)
 
 });
 
-//loginTable
+//loginTable(stores the current user that's logging into profile page)
 router.get("/api/userInfo", function(req, res)
 {
-	console.log("yeahddddddddddddddddddddddddddddd");
+	
+	
 	proximity.selectAllUsers(function(data)
 	{
 		var proximityObject =
@@ -66,6 +67,28 @@ router.get("/api/userInfo", function(req, res)
 		
 
 });
+
+//DELETE signed in user when user logs out
+router.delete("/api/userInfo/:id", function(req, res) 
+{
+  var condition = "id = " + req.params.id;
+
+  proximity.delete(condition, function(result) 
+  {
+    if (result.affectedRows == 0) 
+    {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    } 
+    else 
+    {
+      res.status(200).end();
+    }
+
+  });
+});
+
+
 router.get("/hello",function(req,res){
 	console.log(req);
 	res.json({data:"hello"});
