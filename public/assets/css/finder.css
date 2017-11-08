@@ -50,3 +50,6 @@ body {
 }
 
 
+.incons:hover {
+	box-shadow: 2px 12px 30px white;
+}

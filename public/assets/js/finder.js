@@ -5,39 +5,39 @@ var friendPool = [
 	age: 19,
 	username: "marcorules456",
 	picLink: "assets/image/me1.png",
-	bio: "Arizona"
+	bio: "44 feet away"
 },
 {
 	firstName: "Lisa",
 	lastName: "Muka",
-	age: 19,
+	age: 22,
 	username: "mukarules456",
 	picLink: "assets/image/me2.png",
-	bio: "Arizona"
+	bio: "N/A"
 },
 {
 	firstName: "Roman",
 	lastName: "Ramiro",
-	age: 19,
+	age: 25,
 	username: "ramiro555",
 	picLink: "assets/image/me3.png",
-	bio: "Arizona"
+	bio: "1 mile away"
 },
 {
 	firstName: "Gretcha",
 	lastName: "Wix",
-	age: 19,
+	age: 29,
 	username: "wixie",
 	picLink: "assets/image/nutty.jpg",
-	bio: "Arizona"
+	bio: "1 mile away"
 },
 {
 	firstName: "Rebbeca",
 	lastName: "Johnson",
-	age: 19,
+	age: 30,
 	username: "rebbeca4",
 	picLink: "assets/image/me5.jpg",
-	bio: "Arizona"
+	bio: "122 feet away"
 }
 
 

@@ -8,8 +8,8 @@ var mysql = require("mysql");
 		port: 3306,
 		host: "localhost",
 		user: "root",
-		password:"",
-		database: "proximity_db"		//DB: location_db  Table: userLocations
+		password:"Thirdpi1",
+		database: "location_db"		//DB: location_db  Table: userLocations
 
 
 	});

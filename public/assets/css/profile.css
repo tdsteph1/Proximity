@@ -25,21 +25,25 @@ background:url("../image/pug.jpg");
 	height:80%;
 	width:50%;
 	margin-right:2%;
-	  position:relative;
-	  right:20px;
+	 
 	box-shadow: 3px 13px 30px #888888;
 }
 .infoBox {
 	float:right;
-	margin-right:25%;
-margin-top:5%;
-	height:20%;
+	margin-right:5%;
+	margin-bottom:200px;
+margin-top:3%;
+	
 	color:gray !important;
 }
-.infoBox h3{
+.infoBox span{
 	color:gray !important;
+	
+	
 }
-
+h3 {
+	color: gray !important;
+}
 .hobbyButtons {
 	border-right:1px solid black;
 	border-left:1px solid black;
