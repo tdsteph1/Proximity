@@ -26,6 +26,14 @@ var proximity =
 		});
 	},
 
+	selectAllUsers: function(cb)
+	{
+		orm.selectAll("logIn", function(res)
+		{
+			cb(res);
+		});
+	},
+
 	findExistingUser: function(email, pass, cb)
 	{
 

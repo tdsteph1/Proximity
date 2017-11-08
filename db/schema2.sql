@@ -17,7 +17,21 @@ CREATE TABLE proximity
  PRIMARY KEY (id)
 
 
-
-
 );
+
+CREATE TABLE logIn
+(
+
+id INT AUTO_INCREMENT NOT NULL,
+email VARCHAR(100) NULL,
+password VARCHAR(100) NULL,
+
+
+
+
+ PRIMARY KEY (id)
+
+)
+
+
 

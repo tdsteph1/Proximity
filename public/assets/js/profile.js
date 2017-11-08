@@ -1,3 +1,7 @@
+//var connection = require("../config/connection.js");
+
+
+
 var hobbies =[];
 var interests = $("#interest").val();
 var username= "";
@@ -47,6 +51,17 @@ var friendPool = [
 
 
 ];
+
+
+$.get("/api/userInfo", function(data)
+			{
+				console.log("profile.js");
+				console.log(data[0].email);
+				$("#thename").html(data[0].email);
+			});
+			
+
+
 $.ajax({
 	url: "http://localhost:3000/api/johndoe@gmail.com_password1",
 

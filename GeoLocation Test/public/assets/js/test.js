@@ -1,6 +1,6 @@
 //Seperate this file to Test.js
 
-//alert("t");
+
 		//moment.js function which gets the current date
 		var getCurrentDate = () => {
 			var currentDate = moment().utc().format("MM/d/YYYY");
