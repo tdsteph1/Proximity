@@ -20,6 +20,8 @@ $(function()
 			password: password
 		};
 
+		//store email in session storage
+		sessionStorage.setItem("email", email);
 
 		//Error Handling
 		if(signEmailPassword.email === "" || signEmailPassword.password === "")
