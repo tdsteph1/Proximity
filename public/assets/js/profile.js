@@ -66,7 +66,6 @@ $.get("/api/userInfo/", function(data)
 
 	//Clear table
 	// Send the DELETE request.
-	/*
     $.ajax("/api/userInfo/" + data[0].id, 
     {
       type: "DELETE",
@@ -78,7 +77,7 @@ $.get("/api/userInfo/", function(data)
         // Reload the page to get the updated list
         //location.reload();
     });
-    */
+    
 
 
 });
