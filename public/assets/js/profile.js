@@ -53,6 +53,8 @@ var friendPool = [
 ];
 
 
+
+
 $.get("/api/userInfo/", function(data)
 {
 	console.log("profile.js");
@@ -66,6 +68,7 @@ $.get("/api/userInfo/", function(data)
 
 	//Clear table
 	// Send the DELETE request.
+	
     $.ajax("/api/userInfo/" + data[0].id, 
     {
       type: "DELETE",
@@ -81,7 +84,15 @@ $.get("/api/userInfo/", function(data)
 
 
 });
-			
+
+
+
+$.get("/api/userCoordinates/", function(data)
+{
+	console.log("profile " + data);
+
+});
+		
 
 
 $.ajax({

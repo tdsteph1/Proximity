@@ -17,10 +17,25 @@ var proximity =
 		});
 	},
 
+	setCoordinates: function(cols, vals, cb)
+	{
+		orm.setCoordinates("userLocation", cols, vals, function(res)
+		{
+			cb(res);
+		});
+	},
 
 	selectAll: function(cb)
 	{
 		orm.selectAll("proximity", function(res)
+		{
+			cb(res);
+		});
+	},
+
+	selectAllCoordinates: function(cb)
+	{
+		orm.selectAllCoordinates("userLocation", function(res)
 		{
 			cb(res);
 		});
@@ -39,12 +54,12 @@ var proximity =
 
 		orm.findExistingUser("proximity", email, pass, function(res, obj)
 		{
-			console.log("models " + res);
-			console.log("models " + obj);
+			
 			cb(res, obj);
 		});
 
 	},
+
 
 	delete: function(condition, cb) 
   	{

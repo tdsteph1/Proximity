@@ -41,8 +41,7 @@ router.get("/", function(req, res)
 //loginTable(stores the current user that's logging into profile page)
 router.get("/api/userInfo", function(req, res)
 {
-	
-	
+
 	proximity.selectAllUsers(function(data)
 	{
 		var proximityObject =
@@ -52,21 +51,16 @@ router.get("/api/userInfo", function(req, res)
 
 		//Displays inside console the mySQL array of TABLE objects
 		//stored inside our proximity table.
-		console.log(proximityObject);
+		console.log("proximity Obj " + proximityObject);
 		res.json(data);
 
 		//TRY: res.json(proximityObject); here, which will display API of
 		//our Table objects EX: API: { [ ]}
 	});
 
-
-	//This allows us to open up home page(login.html)
-	//NOTE: DO NOT USE Routes/html_routes.js && api_routes since
-	//      having those prevents GET from working properley.
-	//      instead have controller deal with those 2 things.
-		
-
 });
+
+
 
 //DELETE signed in user when user logs out
 router.delete("/api/userInfo/:id", function(req, res) 
@@ -135,6 +129,7 @@ router.get("/api/:email_pass", function(req, res)
 	//(req.params.email_pass) contains an array of characters: email & password.
 	//instead of (req.params.email_pass) we use (email) & (pass) instead.
 	//furnction(data) gets executed by orm.js/findExistingUser/cb(exists).
+	
 	proximity.findExistingUser(email, pass, function(data, obj)
 	{
 		
@@ -168,6 +163,7 @@ router.get("/api/:email_pass", function(req, res)
 		
 		
 	});
+	
 
 	
 	
@@ -183,6 +179,7 @@ router.post("/api/proximity", function(req, res)
 		                [req.body.firstName, req.body.lastName, req.body.email, req.body.password, req.body.gender], 
 		                function(result)
 	{
+		console.log("insert " + result);
 		//Triggers $.ajax/.done(function() in order to reload page with updates
 		res.json({
 
@@ -192,6 +189,8 @@ router.post("/api/proximity", function(req, res)
 
 	});
 });
+
+
 
 //POST(login)
 //Email & Password get stored inside a remote array
@@ -205,6 +204,58 @@ router.post("/api/login", function(req, res)
 	 //console.log("login em " + loginInfo[1]);
 
 	
+});
+
+//POST request which passes in the current users 
+//coordinates and returns users near those coordinates
+router.post("/api/proximityUsers", function(req, res) 
+{
+	var coorObj;
+    //gets the current latitude and longitude from the post request.
+    var latitude = req.body.latitude;
+    var longitude = req.body.longitude;
+    var date = req.body.date;
+    var time = req.body.time;
+    var coordinates = req.body.coordinates;
+    var accuracy = req.body.accuracy;
+    var id = req.body.userID;
+
+    console.log("lat " + latitude);
+    console.log("lon " + longitude);
+  
+    
+    //uses sequelize to call a stored procedure which returns users and their distance. Sends this information through the response
+    proximity.setCoordinates(["latitude", "longitude", "date", "time", "coordinates", "accuracy", "userId"], 
+    						[latitude, longitude, date, time, coordinates, accuracy, id], function(result)
+    {
+	
+    		//console.log("coor " + coorObj);
+    		res.json(result);
+
+    });
+
+});
+
+//loginTable(stores the current user that's logging into profile page)
+router.get("/api/userCoordinates", function(req, res)
+{
+console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkd");
+	proximity.selectAllCoordinates(function(data)
+	{
+		var coordinatesObject =
+		{
+			proximity: data
+		}
+
+		//Displays inside console the mySQL array of TABLE objects
+		//stored inside our proximity table.
+		console.log("coordinates obj " + coordinatesObject.proximity);
+		res.json(data);
+
+		//TRY: res.json(proximityObject); here, which will display API of
+		//our Table objects EX: API: { [ ]}
+	});
+
 });
 
 

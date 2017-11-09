@@ -10,8 +10,7 @@ var orm =
 	findExistingUser: function(tableInput, email, pass, cb)
 	{
 		console.log("fixed " + email + " " + pass);
-		//console.log("email " + vals[0]);
-		//console.log("password " + vals[2]);
+		
 		var queryString ="SELECT * FROM " + tableInput + ";"
 
 		//Bollean value we pass to our callback function to determine
@@ -64,9 +63,35 @@ var orm =
 
 		connection.query(queryString, function(err, result)
 		{
-			//var decryptMsg = decryptor.decryptPassword(result[0].password);
-			//console.log("Current Password " + decryptMsg);
+			
+			if(err)
+			{
+				throw err;
+			}
 
+			
+
+			//without this then we would not have reload with updates on page
+			cb(result);
+
+		});
+
+
+	},
+
+	//Display everthing currently in the database/ burgers TABLE
+	selectAllCoordinates: function(tableInput, cb)
+	{
+		
+	   
+
+		var queryString = "SELECT * FROM " + tableInput + ";";
+
+		console.log(queryString);
+
+		connection.query(queryString, function(err, result)
+		{
+			
 			if(err)
 			{
 				throw err;
@@ -88,6 +113,7 @@ var orm =
 	   
 
 		var queryString = "SELECT * FROM " + tableInput + ";";
+
 
 		connection.query(queryString, function(err, result)
 		{
@@ -114,15 +140,6 @@ var orm =
 	insertOne: function(table, cols, vals, cb)
 	{
 
-		 //var encryptMsg = encryptor.encryptPassword('my message');
-	    //console.log(encryptMsg);
-
-	    //var decryptMsg = decryptor.decryptPassword(encryptMsg);
-	    //console.log(decryptMsg)
-
-		
-		//Obtain the value of password stored at vals[3] and encrypt password.
-		//then store encrypted password back to vals[3].
 		var encryptMsg = encryptor.encryptPassword(vals[3]);
 
 		vals[3] = encryptMsg;
@@ -141,7 +158,27 @@ var orm =
 
 			//without this, we prevent the reload from occuring
 			cb(result);
+		});
+	},
 
+	//Insert Coordinates
+	setCoordinates: function(table, cols, vals, cb)
+	{
+		console.log("set Coord " + vals);
+
+		var queryString = "INSERT INTO " + table + " (" + cols.toString() + ") VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+		console.log(queryString);
+
+		connection.query(queryString, vals, function(err, result)
+		{
+			if(err)
+			{
+				throw err;
+			}
+
+			//without this, we prevent the reload from occuring
+			cb(result);
 		});
 
 

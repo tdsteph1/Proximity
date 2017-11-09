@@ -23,6 +23,9 @@ $(function()
 			password: password
 		};
 
+		//store email in local storage
+        sessionStorage.setItem('email', email);
+
 		if(signEmailPassword.email === "" || signEmailPassword.password === "")
 		{
 

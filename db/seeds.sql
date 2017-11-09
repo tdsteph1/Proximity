@@ -7,8 +7,8 @@ INSERT INTO proximity (firstName, lastName, email, password, gender)
 VALUES ("Joe", "Henry", "joe@gmail.ocm", "123", "male");
 */
 
-SELECT * FROM logIn
+SELECT * FROM logIn;
 
 
-
+SELECT * FROM userLocation; 
 
